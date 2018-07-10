@@ -1,0 +1,1 @@
+copy these 2 DLL files to the root directory if you use windows 7

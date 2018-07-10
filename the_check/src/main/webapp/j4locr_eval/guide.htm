@@ -1,0 +1,536 @@
+
+<h1>J4L OCR Tools</h1>
+<ul>
+  <li><a href="#intro">Introduction</a>
+    <ul>
+      <li>Requirements</li>
+    </ul>
+  </li>
+  <li><a href="#wrapper">J4L Java wrapper for Tesseract OCR engine 3.0</a>
+    <ul>
+      <li>Introduction</li>
+      <li>How to install the software</li>
+      <li>Running the test application</li>
+      <li>How to use the classes in your Java programs</li>
+    </ul>
+  </li>
+  <li><a href="#pdf">PDF to Text converter</a>
+    <ul>
+      <li>Introduction</li>
+      <li>How to use the classes in your Java programs</li>
+    </ul>
+  </li>
+  <li><a href="#document">J4L Document Parser</a>
+    <ul>
+      <li>Introduction</li>
+      <li>How to create a document definition</li>
+      <li>How to run the parser</li>
+    </ul>
+  </li>
+  <li><a href="#servlet">The OCR servlet</a></li>
+  <li><a href="#pdfservlet">The PDF converter servlet</a></li>
+  <li><a href="#thirdparty">Third party software</a></li>
+</ul>
+<p>&nbsp;</p>
+<h1><a name="intro"></a>Introduction</h1>
+<p>&nbsp;</p>
+<p>The J4L OCR tools is a set of components that can be used in Java
+applications to recognize text within an image and parse such texts. This can be
+used to scan or fax business documents like purchase orders and extract the data
+from them. Another use case is to archive images and indexing them with data
+extracted from the content.</p>
+<p>The tools are made of 2 main components:</p>
+<ul>
+  <li>The text generator which can be:
+    <ul>
+      <li>The <a href="#install">Java wrapper</a> for the Tesseract OCR engine. This
+    wrapper will be used for converting images to text using the Tesseract OCR engine.</li>
+      <li>Or the PDF to Text converter which converts PDF files to text.<br>
+      </li>
+    </ul>
+  </li>
+  <li>The <a href="#document">document parser</a> will extract the data from the
+    text provided by the OCR engine or PDF to text converter.</li>
+</ul>
+<h2>Requirements</h2>
+<p>The Java components require Java 1.5 or later. If you are going to use the
+OCR engine&nbsp; Tesseract, it requires Windows.</p>
+<p>&nbsp;</p>
+<h2><a name="wrapper"></a>J4L Java wrapper for Tesseract OCR engine 3.0</h2>
+<h3><a name="wrapperintro"></a>Introduction</h3>
+<p><a href="http://code.google.com/p/tesseract-ocr/">Tesseract OCR </a>is a free
+OCR engine sponsored by Google. The J4L Java Wrapper classes is a bridge
+that allows you to use the engine from your Java application. The current
+implementation will run on windows only, however it is possible to create a
+Linux version also, let us know if you have such requirement.</p>
+<p>The benefits of the J4L wrapper are:</p>
+<ul>
+  <li>will abstract your Java application from the C/C++ details of the OCR
+    engine.</li>
+  <li>it is very easy to use</li>
+</ul>
+<h3><a name="install"></a>How install the software</h3>
+<p>The zip file we distribute <b>can use used directly after unzipping without
+additional setup</b>. However if you use our classes in your own application you
+need to take this into account:</p>
+<ul>
+  <li><i>tess3WrapperDLL.dll </i>and <i>leptonlibd.dll</i> must be located in the
+    current working directory or in the system's path.</li>
+  <li>the subdirectory <i>tessdata </i>must be located in the working directory.</li>
+  <li>the files <i>lib/jai_codec.jar </i>and<i> lib/jai_core.jar </i>must be
+    located in your classpath if you are going to read tiff files.</li>
+  <li>if you are going to process files in other language than english you must
+    download the corresponding language file from: <br>
+    <br>
+    <a href="http://code.google.com/p/tesseract-ocr/downloads/list">http://code.google.com/p/tesseract-ocr/downloads/list<br>
+    <br>
+    </a>the files are called like<i> XXX.traineddata.gz&nbsp; </i>where XXX is
+    the language. There is support for eng (english), spa (spanish), fra
+    (french), deu (german), nld (dutch), ita (italian) and many other langauges. These files must be
+    unzipped in the <i>tessdata </i>subdirectory of the working directory.</li>
+</ul>
+<p>&nbsp;</p>
+<h3><a name="wrappertest"></a>Running the test application</h3>
+<p>Our distribution includes a<i>  runOCRParserTest.bat</i> file which will take the file
+<i>order.png</i> as input file and will output the content of the file as text after
+running the OCR engine. The code being executed is the file<i> OCRTest.java.</i></p>
+<p>&nbsp;</p>
+<h3><a name="wrapperapi"></a>How to use the classes in your Java programs</h3>
+<p>The usage of the classes is very simple:</p>
+<ol>
+  <li>Import the facade class:<br>
+    <br>
+    <b><font COLOR="#7f0055">import</font></b> com.java4less.ocr.tess.OCRFacade;<br>
+    <br>
+  </li>
+  <li>create the facade object:<br>
+    <br>
+    OCRFacade facade=<b><font COLOR="#7f0055">new</font></b> OCRFacade();<br>
+    <br>
+  </li>
+  <li>run the OCR by providing an input file and language<br>
+    <br>
+    String text=facade.recognizeFile(<font COLOR="#2a00ff">&quot;Report.PNG&quot;</font>,
+    <font COLOR="#2a00ff">&quot;eng&quot;</font>);<br>
+  </li>
+</ol>
+<p>this will return a text string. If the image is a multipage file the pages
+will be separated by the FF character (asii character 12) in the text string.</p>
+<h2>&nbsp;</h2>
+<h2><a name="pdf"></a>PDF to Text Converter</h2>
+<h3>Introduction</h3>
+<p>Our component uses Apache PDBox to parse the PDF files and extract the text
+content. The extracted text will be formatted in the similar way as the text in
+the PDF file, that means the line a columns positions of the values will be
+similar.</p>
+<p>Note however the text conversion works only if the PDF file contains text
+elements. For example, some faxes or scanner can create PDF files but these
+files contain just images of the scanned page and not text elements. The
+converter would not work on this kind of files.</p>
+<p>&nbsp;</p>
+<h3>How to use the classes in your Java programs</h3>
+<p>The usage of the classes is very simple:</p>
+<ol>
+  <li>Import the class:<br>
+    <br>
+    <b><font COLOR="#7f0055">import</font></b>  com.java4less.pdf.PDFToTextConverter;<br>
+    <br>
+  </li>
+  <li>create the converter object:<br>
+    <br>
+    PDFToTextConverter conv=<b><font COLOR="#7f0055">new</font></b>
+    PDFToTextConverter();<br>
+    <br>
+  </li>
+  <li>run the converter by providing an input file<br>
+    <br>
+    String text=conv.convertToString(<b><font COLOR="#7f0055">new</font></b>
+    FileInputStream(<font COLOR="#2a00ff">&quot;order.pdf&quot;</font>));<br>
+  </li>
+</ol>
+<p>this will return a text string. If thepdf is a multipage file the pages
+will be separated by the FF character (asii character 12) in the text string.</p>
+<p>&nbsp;</p>
+<h1>&nbsp;</h1>
+<h2><a name="document"></a>J4L Document parser</h2>
+<p>The document parser will help you in extracting the information from the text
+returned by the OCR engine. The benefits of using our document parse are:</p>
+<ul>
+  <li>It provides a clear declarative interface to extract data (xml based).</li>
+  <li>It will save you from writing lot of plumbing code.</li>
+  <li>The document parser will also understand labels that are not correctly read
+    by the OCR engine. For example , if you are looking for a label called
+    &quot;Total&quot;, but the engine reads &quot;Totai&quot;, the document
+    parse will still find the label.</li>
+</ul>
+<h3><a name="parserintro"></a>Introduction</h3>
+<p>The document parser divides the data in sections, normally a document has a
+header section, a detail section that can be repeated and a footer section. The
+following screenshot shows a documents with 4 sections:</p>
+<ul>
+  <li>The header that starts on the top of the document.</li>
+  <li>The detail header.</li>
+  <li>The detail which can be repeated and has a hight of 1 line each.</li>
+  <li>The footer.</li>
+</ul>
+<p><img border="0" src="images/image1.png" width="677" height="329"></p>
+<p>But how does the parser know where the sections are located? It uses 2 rules:</p>
+<ul>
+  <li>Some sections can be identified because they contains a certain label (we
+    use the term label and text mark for this). For example, the detail header
+    can be found by looking for the text &quot;Number Article Description&quot;.
+    What happens if the OCR engine reads the values &quot;Nunber Articlo
+    Descripton&quot;?<b> The parser will still find it</b>.</li>
+  <li>Other sections can be identified because they are located after a fixed
+    length section. For example, we know the detail header has length 1 line,
+    and after that the detail section starts.</li>
+</ul>
+<p>The other type of object in the document are <b>labels (or text marks)</b>
+which are constant values (all documents of the same type have the same label at
+the same position) and <b>fields</b>, which are variable values, normally
+located next to labels.</p>
+<p>To summarize, labels are used to find fields and sections.</p>
+<p><img border="0" src="images/image2.png" width="687" height="324"></p>
+<h3><a name="documentcreate"></a>How to create a document definition</h3>
+<p><br>
+The document definition is a XML file that describes the sections of a document
+and the labels and fields. This XML file will be used at runtime to parse the
+text returned by the OCR engine, The XML's file root node is called <i>&lt;documentref&gt;</i>
+and his children are &lt;section&gt;. The following XML shows main structure of
+the example document used in the introduction:</p>
+<p><i>&lt;documentref&gt;</i></p>
+<blockquote>
+  <p><i>&lt;section name=&quot;header&quot;&gt;<br>
+  &lt;/section&gt;</i></p>
+  <p><i>&lt;section name=&quot;detailsheader&quot; len=&quot;1&quot;&gt;<br>
+  &lt;/section&gt;</i></p>
+  <p><i>&lt;section name=&quot;detail&quot; repeteable=&quot;true&quot;
+  len=&quot;1&quot; &gt;<br>
+  &lt;/section&gt;</i></p>
+  <p><i>&lt;section name=&quot;footer&quot; mandatory=&quot;false&quot;&gt;<br>
+  &lt;/section&gt;</i></p>
+</blockquote>
+<p><i>&lt;/documentref&gt;</i></p>
+<p>this defines the 4 sections of the document. As a general rule, sections are
+mandatory, they must exist in the document, non mandatory sections are allowed
+only at the end of the document.</p>
+<p>Now we have to define how to
+find the sections:</p>
+<ul>
+  <li>The header section is the first in the document so it starts on the top of
+    the document and requires no further definition</li>
+  <li>The detail header will start when we find the label &quot;Number
+    Article&quot;</li>
+  <li>The detail section will start after the detail header which has a fixed
+    length of 1 line so no further definition is required.</li>
+  <li>The footer section will start when we find the text &quot;Tax:&quot;<br>
+  </li>
+</ul>
+<p>The tag <i>&lt;startlabel&gt;</i> will be used to define the label which
+identifies the section:</p>
+<p><i>&lt;documentref&gt;</i></p>
+<blockquote>
+  <p><i>&lt;section name=&quot;header&quot;&gt;<br>
+  &lt;/section&gt;</i></p>
+  <p><i>&lt;section name=&quot;detailsheader&quot; len=&quot;1&quot;&gt;<br>
+  </i><font color="#2A00FF">&nbsp;<i>&nbsp;&nbsp;&nbsp;</i> <i>&lt;startlabel
+  name=&quot;detailsheaderlbl&quot;&gt;</i>&nbsp;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <i>&lt;value&gt;Number Article&lt;value&gt;</i><br>
+  &nbsp;&nbsp;&nbsp;&nbsp; <i>&lt;/startlabel&gt;</i>&nbsp;</font><i><br>
+  &lt;/section&gt;</i></p>
+  <p><i>&lt;section name=&quot;detail&quot; repeteable=&quot;true&quot;
+  len=&quot;1&quot; &gt;<br>
+  &lt;/section&gt;</i></p>
+  <p><i>&lt;section name=&quot;footer&quot; mandatory=&quot;false&quot;&gt;<br>
+  </i><font color="#2A00FF">&nbsp;<i>&nbsp;&nbsp;&nbsp;</i> <i>&lt;startlabel
+  name=&quot;detailsheaderlbl&quot;&gt;</i>&nbsp;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <i>&lt;value&gt;Tax:&lt;value&gt;</i><br>
+  &nbsp;<i>&nbsp;&nbsp;&nbsp;</i> <i>&lt;/startlabel&gt;</i>&nbsp;</font><i><br>
+  &lt;/section&gt;</i></p>
+</blockquote>
+<p><i>&lt;/documentref&gt;</i></p>
+<p>Now the structure of the document has been defined. The next step is defining
+the fields we want to extract and the labels we will use to locate the fields.
+In this example we will read 3 fields</p>
+<ul>
+  <li>The purchase order number in the header. The purchase order number is
+    located right to the label &quot;Number:&quot;</li>
+  <li>The article number and quantity from the detail section. The article is
+    located as second field in each line, and the quantity is the third element
+    starting from the left.</li>
+</ul>
+<p>In each section you use the <i>&lt;label&gt;</i> tag to define label and the <i>&lt;field&gt;
+</i>tag to define fields. The fields have 2 positions, x and y (line). Each
+position has a reference to a label or another field and the directions how to
+find the field.</p>
+<p><i>&lt;documentref&gt;</i></p>
+<blockquote>
+  <p><i>&lt;section name=&quot;header&quot;&gt;<br>
+  &nbsp;&nbsp;&nbsp;<font color="#2A00FF"> &lt;label name="numberlbl">&nbsp; </font><font color="#008000">***
+  define the label Number: ****</font><font color="#2A00FF"><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;value&gt;Number:&lt;/value><br>
+  &nbsp;&nbsp;&nbsp; &lt;/label></font><br>
+  <font color="#FF0000">&nbsp;&nbsp;&nbsp; &lt;field
+  name=&quot;numberValue&quot; mandatory=&quot;true&quot; type=&quot;S&quot;
+  format=&quot;<tt>[0-9]{10}</tt>&quot;&gt;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;x><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;reference>numberlbl&lt;/reference>&nbsp;</font><font color="#2A00FF">
+  </font><font color="#008000">*** this field is located next to the numberlbl
+  ****</font><font color="#FF0000"><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;direction>RIGHT&lt;/direction>&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#2A00FF">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF0000"><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;distance>1&lt;/distance>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#2A00FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </font><font color="#008000">*** the field is 1 word to the right ****</font><font color="#FF0000"><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/x><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;y><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;reference>numberlbl&lt;/reference>&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#2A00FF">&nbsp;
+  </font><font color="#008000">*** the number label us used to find the line of
+  the field****</font><font color="#FF0000"><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;direction>UP&lt;/direction><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;distance>0&lt;/distance>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#2A00FF">&nbsp;
+  </font><font color="#008000">*** the field is in the same line as the
+  reference ****</font><font color="#FF0000"><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/y><br>
+  &nbsp;&nbsp;&nbsp; &lt;/field></font><br>
+  &lt;/section&gt;</i></p>
+  <p><i>&lt;section name=&quot;detailsheader&quot; len=&quot;1&quot;&gt;<br>
+  </i>&nbsp;<i>&nbsp;&nbsp;&nbsp;</i> <i>&lt;startlabel
+  name=&quot;detailsheaderlbl&quot;&gt;</i>&nbsp;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <i>&lt;value&gt;Number Article&lt;value&gt;</i><br>
+  &nbsp;&nbsp;&nbsp;&nbsp; <i>&lt;/startlabel&gt;</i>&nbsp;<i><br>
+  &lt;/section&gt;</i></p>
+  <p><i>&lt;section name=&quot;detail&quot; repeteable=&quot;true&quot;
+  len=&quot;1&quot; &gt;</i></p>
+  <p><i><font color="#FF0000">&nbsp;&nbsp;&nbsp; &lt;field
+  name=&quot;articleValue&quot;&gt;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;			&lt;x><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;				&lt;reference&gt;BeginOfLine&lt;/reference>&nbsp;</font><font color="#2A00FF">
+  </font><font color="#008000">*** this field is the second word from the beginning of
+  the line ****</font><font color="#FF0000"><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;				&lt;direction>RIGHT&lt;/direction>&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#2A00FF">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF0000"><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;				&lt;distance&gt;2&lt;/distance>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#2A00FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF0000"><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;			&lt;/x><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;			&lt;y><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;				&lt;reference&gt;BeginOfSection&lt;/reference>&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#2A00FF">&nbsp;
+  </font><font color="#008000">*** this field is located in the first line of
+  the section****</font><font color="#FF0000"><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;				&lt;direction&gt;DOWN&lt;/direction><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;				&lt;distance>0&lt;/distance>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;			&lt;/y><br>
+  &nbsp;&nbsp;&nbsp;		&lt;/field></font></i></p>
+  <p><i><font color="#FF0000">&nbsp;&nbsp;&nbsp; &lt;field
+  name=&quot;quantityValue&quot;&gt;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;			&lt;x><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;				&lt;reference&gt;EndOfLine&lt;/reference>&nbsp;</font><font color="#2A00FF">
+  </font><font color="#008000">*** this field the third word from the end of the line ****</font><font color="#FF0000"><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;				&lt;direction&gt;LEFT&lt;/direction>&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#2A00FF">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF0000"><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;				&lt;distance&gt;3&lt;/distance>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#2A00FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF0000"><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;			&lt;/x><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;			&lt;y><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;				&lt;reference&gt;BeginOfSection&lt;/reference>&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#2A00FF">&nbsp;
+  </font><font color="#008000">*** this field is located in the first line of
+  the section****</font><font color="#FF0000"><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;				&lt;direction&gt;DOWN&lt;/direction><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;				&lt;distance>0&lt;/distance>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;			&lt;/y><br>
+  &nbsp;&nbsp;&nbsp;		&lt;/field></font><br>
+  &lt;/section&gt;</i></p>
+  <p><i>&lt;section name=&quot;footer&quot;&gt;<br>
+  </i>&nbsp;<i>&nbsp;&nbsp;&nbsp;</i> <i>&lt;startlabel
+  name=&quot;detailsheaderlbl&quot;&gt;</i>&nbsp;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <i>&lt;value&gt;Tax:&lt;value&gt;</i><br>
+  &nbsp;<i>&nbsp;&nbsp;&nbsp;</i> <i>&lt;/startlabel&gt;</i>&nbsp;<i><br>
+  &lt;/section&gt;</i></p>
+</blockquote>
+<p><i>&lt;/documentref&gt;</i></p>
+<p>It is possible to read a field at a fixed position as shown below, the
+delivery date will be located in line 3 at column 60:</p>
+<p><i>    &lt;field name="DeliveryDate" type="D" format="dd/MM/yyyy" mandatory="false"><br>
+&nbsp;&nbsp;&nbsp; &lt;x><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;reference>BEGINOFLINE&lt;/reference><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;direction>RIGHT&lt;/direction><br>
+<font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;distance>60&lt;/distance><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;useColumnPosition>true&lt;/useColumnPosition></font><br>
+&nbsp;&nbsp;&nbsp; &lt;/x><br>
+&nbsp;&nbsp;&nbsp; &lt;y><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;reference>BEGINOFSECTION&lt;/reference><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;direction>DOWN&lt;/direction><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#FF0000">&lt;distance>3&lt;/distance></font><br>
+&nbsp;&nbsp;&nbsp; &lt;/y><br>
+    &lt;/field></i></p>
+<p>If you want to use the absolute position of the field instead of using
+associated labels, you must first convert the PDF or image to text in order to
+find out what the position of a field will be. This approach should be used only
+with PDF files and setting the property <i>setPreserveSpaces() </i>of the class <i>PDFToTextConverter
+</i>to true.</p>
+<p>&nbsp;</p>
+<h4>Error handling</h4>
+<p>The parser can detect the following kind of errors:</p>
+<ul>
+  <li>Missing mandatory sections. The default value is, all sections are
+    mandatory.</li>
+  <li>Missing mandatory field. The default value is, all fields are mandatory.</li>
+  <li>Field format error. Each field can have a type which is string (default),
+    numeric or date.
+    <ul>
+      <li>For string fields you can use a regular expression to define the
+        expected format, for example, the regular expression [0-9]{10} means a
+        string made of 10 digits. The regular expressions are those supported by<i>
+        java.util.regex.Pattern. </i>For example:<br>
+        <br>
+        <font COLOR="#008080">&lt;</font><font COLOR="#3f7f7f">field </font><font COLOR="#7f007f">name</font>=<font COLOR="#2a00ff">&quot;Number&quot;
+        </font><font COLOR="#7f007f">type</font>=<font COLOR="#2a00ff">&quot;S&quot;
+        </font><font COLOR="#7f007f">format</font>=<font COLOR="#2a00ff">&quot;[0-9]{10}&quot;</font><font COLOR="#008080">&gt;</font><br>
+        <br>
+      </li>
+      <li>For date fields, the format can be any supported by the class <i>java.text.SimpleDateFormat.<br>
+        <br>
+        <font COLOR="#008080">&lt;</font><font COLOR="#3f7f7f">field </font><font COLOR="#7f007f">name</font>=<font COLOR="#2a00ff">&quot;DeliveryDate&quot;
+        </font><font COLOR="#7f007f">type</font>=<font COLOR="#2a00ff">&quot;S&quot;
+        </font><font COLOR="#7f007f">format</font>=<font COLOR="#2a00ff">&quot;dd/MM/yyyy&quot;
+        </font><font COLOR="#7f007f">mandatory</font>=<font COLOR="#2a00ff">&quot;false&quot;</font><font COLOR="#008080">&gt;</font><br>
+        <br>
+        </i></li>
+      <li>For numeric fields, the format can be any supported by the class <i>java.text.DecimalFormat.<br>
+        <br>
+        <font COLOR="#008080">&lt;</font><font COLOR="#3f7f7f">field </font><font COLOR="#7f007f">name</font>=<font COLOR="#2a00ff">&quot;Quantity&quot;
+        </font><font COLOR="#7f007f">type</font>=<font COLOR="#2a00ff">&quot;N&quot;
+        </font><font COLOR="#7f007f">format</font>=<font COLOR="#2a00ff">&quot;####0&quot;</font><font COLOR="#008080">&gt;<br>
+        </font></i></li>
+    </ul>
+  </li>
+</ul>
+<p>the format attribute is required only if you want the parser to check the
+format for the value, otherwise do not add the format attribute to your field.</p>
+<p>&nbsp;</p>
+<h3><a name="documentrun"></a>How to run the parser</h3>
+<p>&nbsp;</p>
+<p>In the previous sections you have learnt how to create a document definition
+in XML format. In the <a href="#wrapperapi">wrapper</a> section we showed how to
+use the OCR engine to obtain a String out of an image file. The next step is to
+use our Java classes to parse the obtained String using the document definition
+XML file.</p>
+<p>The steps to do this are:</p>
+<ol>
+  <li>Create a<i> DocumentDef </i> object and load your XML file as follows
+<p>DocumentDef docDefinition=<b><font COLOR="#7f0055">new</font></b>
+DocumentDef();<br>
+docDefinition.loadFromXml(<font COLOR="#2a00ff">&quot;purchaseorderDefinition.xml&quot;</font>);</p>
+  </li>
+  <li>Create a <i> Parser </i>object and parse the data String:<p>Parser parser=<b><font COLOR="#7f0055">new</font></b>
+    Parser(docDefinition);<br>
+    DocumentSet docSet=parser.parse(data);&nbsp; // the variable data is the
+    string returned by the OCR engine</p>
+  </li>
+  <li>once the data has been parsed, you can obtain the sections and fields<br>
+    <br>
+    Document doc=docSet.getDocument(0);<br>
+    Section header=doc.getSectionByName(&quot;header&quot;)[0];<br>
+    String number=header.getField(&quot;numberValue&quot;);<br>
+    <br>
+  </li>
+  <li>You can check if the are errors in the document by calling the method <i>doc.hasError()</i>.
+    If it returns true you use the method <i>doc.getErrors()</i> to get the list
+    of errors, which can be any of these: <i>SectionMissingException,
+    FieldMissingException </i>or <i>FieldFormatException</i>.
+  </li>
+</ol>
+<h4>Exporting data to XML</h4>
+<p>The data read by the <i> Parser</i> can be exported to XML by calling <i>documentSet.toXml()</i>.
+The output will look like this:</p>
+<p>&lt;Set>&nbsp; <i><font color="#FF0000">root element</font></i><br>
+&nbsp;&nbsp;&nbsp; &lt;PurchaseOrder>&nbsp; <i><font color="#FF0000">name of the
+document</font></i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;order_header> <i><font color="#FF0000">section</font></i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;Number>4500005693&lt;/Number>
+<i><font color="#FF0000">field</font></i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;DeliveryDate>07/02/2001&lt;/DeliveryDate>
+<i><font color="#FF0000">field</font></i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/order_header>&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;col_header/><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;items_detail> <i><font color="#FF0000">section</font></i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;Article>R-5000&lt;/Article><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;Quantity>111.0&lt;/Quantity><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/items_detail><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;items_detail> <i><font color="#FF0000">section</font></i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;Article>R-3456&lt;/Article><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;Quantity>1.0&lt;/Quantity><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/items_detail><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;order_footer/> <i><font color="#FF0000">section<br>
+</font></i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;Error field="Number" section="order header" sectionRepetition="1">FieldFormatError&lt;/Error>&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;Error field="DeliveryDate" section="order header" sectionRepetition="1">FieldFormatError&lt;/Error><br>
+&nbsp;&nbsp;&nbsp; &lt;/PurchaseOrder><br>
+&lt;/Set></p>
+<p>The root element is &lt;Set&gt;, followed by the document name element whose
+children are the sections. Within each section, the elements are the fields of
+the section. After the sections there could be only or more &lt;Error&gt;
+elements which reports missing sections, missing fields or format errors.</p>
+<p>&nbsp;</p>
+<h3><a name="servlet"></a>The OCR Servlet</h3>
+<p><br>
+The product includes a servlet which takes as input an image file, runs the OCR
+engine and parses the text data. The result returned by the servlet will be the
+XML data of the document.&nbsp;</p>
+<p>The servlet has to be installed on Tomcat for Windows like this:</p>
+<ul>
+  <li>copy the file<i> J4LOCRServer.war </i>to the<i> tomcatdirectory\webapps</i>
+    directory.</li>
+  <li>copy <i>tess3Wrapper.dll </i>and <i>leptonlibd.dll </i>to&nbsp;<i>
+    tomcatdirectory\bin</i> directory.</li>
+  <li>copy the <i>tessdata </i>subdirectory to&nbsp;<i> tomcatdirectory\bin</i>
+    directory.</li>
+  <li>start tomcat</li>
+</ul>
+<p>the servlet can be tested by openning this URL:</p>
+<p><a href="http://localhost:8080/J4LOCRServer/Example.html">http://localhost:8080/J4LOCRServer/Example.html</a></p>
+<p>this opens a form so that you can upload the file order.png to the servlet.</p>
+<p>The servlet URL is <i>/J4LOCRServer/OCRServer</i> and it requires the following parameters as part of the URL:</p>
+<ul>
+  <li>DEFINITION parameter: used to set the document definition file used to
+    parse the document, in our example it is <i>ordedef.xml</i>. This file must
+    be located in the directory webapps\J4LOCRServer\WEB-INF\classes.</li>
+  <li>Set DATAFIELD=YES if the image is going to be uploaded using a HTML file.
+    If this paramter is missing the Servlet must be called using the POST method
+    and sending the image data.<br>
+  </li>
+</ul>
+<h3><a name="pdfservlet"></a>The PDF Converter Servlet</h3>
+<p><br>
+The product includes a servlet which takes as input an PDF file, runs the PDF
+converter and parses the text data. The result returned by the servlet can be
+text or XML data of the document.&nbsp;</p>
+<p>The servlet has to be installed on Tomcat for Windows like this:</p>
+<ul>
+  <li>copy the file<i> J4LOCRServer.war </i>to the<i> tomcatdirectory\webapps</i>
+    directory.</li>
+  <li>start tomcat</li>
+</ul>
+<p>the servlet can be tested by openning this URL:</p>
+<p><a href="http://localhost:8080/J4LOCRServer/ExamplePDF.html">http://localhost:8080/J4LOCRServer/ExamplePDF.html</a></p>
+<p>this opens a form so that you can upload the file order.pdf to the servlet.</p>
+<p>The servlet URL is <i>/J4LOCRServer/PDFConvServer</i>&nbsp; and it requires the following parameters as part of the URL:</p>
+<ul>
+  <li>DEFINITION parameter: used to set the document definition file used to
+    parse the document, in our example it is <i>ordedef.xml</i>. This file must
+    be located in the directory webapps\J4LOCRServer\WEB-INF\classes. If this
+    parameter is missing the text will be returned (instead of the parsed
+    content as XML).</li>
+  <li>Set DATAFIELD=YES if the image is going to be uploaded using a HTML file.
+    If this paramter is missing the Servlet must be called using the POST method
+    and sending the image data.
+  </li>
+</ul>
+<p>&nbsp;</p>
+<h2><a name="thirdparty"></a>Third party software</h2>
+<p>Our component uses the Tesseact OCR engine, Apache Xalan, Apache Xerces and
+Apache commons which are distributed under the
+Apache 2,0 license and the Sun Java Advanced Imaging API, used to read tiff
+files.</p>
+<p>The PDF to Text converter uses the Apache PDBox library, the Apache Jempbox
+library and the Apache Fontbox library.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>

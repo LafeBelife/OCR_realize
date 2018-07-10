@@ -1,0 +1,2 @@
+java -Xmx1024M -cp j4locr.jar;lib/commons-logging-1.0.4.jar;lib/fontbox-1.2.1.jar;lib/jempbox-1.2.1.jar;lib/pdfbox-1.2.1.jar;lib/xalan-2.7.0.jar;lib/xercesImpl-2.7.1.jar;lib/xml-apis-1.3.04.jar;lib/serializer-2.7.0.jar;. PDFParserTest
+pause
