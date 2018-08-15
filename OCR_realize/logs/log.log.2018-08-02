@@ -1,0 +1,5 @@
+2018-08-02 09:20:37 [ main:0 ] - [ INFO ] get access_token success. current state: STATE_AIP_AUTH_OK
+2018-08-02 09:20:37 [ main:10 ] - [ DEBUG ] current state after check priviledge: STATE_TRUE_AIP_USER
+2018-08-02 09:24:24 [ main:0 ] - [ INFO ] get access_token success. current state: STATE_AIP_AUTH_OK
+2018-08-02 09:24:24 [ main:2 ] - [ DEBUG ] current state after check priviledge: STATE_TRUE_AIP_USER
+2018-08-02 09:47:21 [ main:0 ] - [ WARN ] oauth get error, current state: STATE_TRUE_CLOUD_USER

@@ -1,0 +1,39 @@
+2018-08-10 13:46:14 [ main:0 ] - [ DEBUG ] -------------- l o g 记 录---2018-08-10 13:46:14----------------------------------------
+2018-08-10 13:46:14 [ main:4 ] - [ INFO ] 图片为 空 | null ：
+2018-08-10 13:46:14 [ main:4 ] - [ INFO ] 传入图片路径不是有效的：
+
+2018-08-10 13:51:22 [ main:0 ] - [ DEBUG ] -------------- l o g 记 录---2018-08-10 13:51:22----------------------------------------
+2018-08-10 13:51:22 [ main:1 ] - [ INFO ] 图片 不是有效的:jmrtjrtj
+2018-08-10 13:51:22 [ main:1 ] - [ INFO ] 传入图片路径不是有效的：
+jmrtjrtj
+2018-08-10 13:51:33 [ main:0 ] - [ DEBUG ] -------------- l o g 记 录---2018-08-10 13:51:33----------------------------------------
+2018-08-10 13:51:33 [ main:1 ] - [ INFO ] 图片 不是有效的:/*-82*-/*0-
+2018-08-10 13:51:33 [ main:1 ] - [ INFO ] 传入图片路径不是有效的：
+/*-82*-/*0-
+2018-08-10 13:51:57 [ main:0 ] - [ DEBUG ] -------------- l o g 记 录---2018-08-10 13:51:57----------------------------------------
+2018-08-10 13:51:57 [ main:1 ] - [ INFO ] 图片 不是有效的:C:\Users\Administrator\Desktop\SVNReserve
+2018-08-10 13:51:57 [ main:1 ] - [ INFO ] 传入图片路径不是有效的：
+C:\Users\Administrator\Desktop\SVNReserve
+2018-08-10 13:52:10 [ main:0 ] - [ DEBUG ] -------------- l o g 记 录---2018-08-10 13:52:10----------------------------------------
+2018-08-10 13:52:10 [ main:1 ] - [ INFO ] 图片 不是有效的:C:\Users\Administrator\Desktop\SVNReserve/./.
+2018-08-10 13:52:10 [ main:1 ] - [ INFO ] 传入图片路径不是有效的：
+C:\Users\Administrator\Desktop\SVNReserve/./.
+2018-08-10 13:53:12 [ main:0 ] - [ INFO ] get access_token success. current state: STATE_AIP_AUTH_OK
+2018-08-10 13:53:12 [ main:5 ] - [ DEBUG ] current state after check priviledge: STATE_TRUE_AIP_USER
+2018-08-10 13:54:11 [ main:0 ] - [ INFO ] get access_token success. current state: STATE_AIP_AUTH_OK
+2018-08-10 13:54:11 [ main:5 ] - [ DEBUG ] current state after check priviledge: STATE_TRUE_AIP_USER
+2018-08-10 13:56:40 [ main:0 ] - [ WARN ] oauth get error, current state: STATE_TRUE_CLOUD_USER
+2018-08-10 13:57:18 [ main:0 ] - [ INFO ] get access_token success. current state: STATE_AIP_AUTH_OK
+2018-08-10 13:57:18 [ main:3 ] - [ DEBUG ] current state after check priviledge: STATE_TRUE_AIP_USER
+2018-08-10 14:00:33 [ main:0 ] - [ INFO ] get access_token success. current state: STATE_AIP_AUTH_OK
+2018-08-10 14:00:33 [ main:2 ] - [ DEBUG ] current state after check priviledge: STATE_TRUE_AIP_USER
+2018-08-10 14:13:53 [ main:0 ] - [ INFO ] get access_token success. current state: STATE_AIP_AUTH_OK
+2018-08-10 14:13:53 [ main:7 ] - [ DEBUG ] current state after check priviledge: STATE_TRUE_AIP_USER
+2018-08-10 14:23:34 [ main:0 ] - [ INFO ] get access_token success. current state: STATE_AIP_AUTH_OK
+2018-08-10 14:23:34 [ main:2 ] - [ DEBUG ] current state after check priviledge: STATE_TRUE_AIP_USER
+2018-08-10 14:31:33 [ main:0 ] - [ INFO ] get access_token success. current state: STATE_AIP_AUTH_OK
+2018-08-10 14:31:33 [ main:6 ] - [ DEBUG ] current state after check priviledge: STATE_TRUE_AIP_USER
+2018-08-10 14:33:32 [ main:0 ] - [ INFO ] get access_token success. current state: STATE_AIP_AUTH_OK
+2018-08-10 14:33:32 [ main:4 ] - [ DEBUG ] current state after check priviledge: STATE_TRUE_AIP_USER
+2018-08-10 14:35:08 [ main:0 ] - [ INFO ] get access_token success. current state: STATE_AIP_AUTH_OK
+2018-08-10 14:35:08 [ main:2 ] - [ DEBUG ] current state after check priviledge: STATE_TRUE_AIP_USER

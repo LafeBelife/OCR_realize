@@ -1,0 +1,36 @@
+2018-07-25 16:43:22 [ main:0 ] - [ DEBUG ] -------------- l o g 记 录---2018-07-25 16:43:22----------------------------------------
+2018-07-25 16:43:22 [ main:10 ] - [ INFO ] 流关闭 IOException：C:\Users\Administrator\Desktop//tempWed Jul 25 16:43:21 CST 2018.jpg
+2018-07-25 16:43:22 [ main:10 ] - [ INFO ] 流关闭 IOException：C:\Users\Administrator\Desktop//tempWed Jul 25 16:43:21 CST 2018.jpg
+2018-07-25 16:43:22 [ main:20 ] - [ INFO ] 流关闭 IOException：C:\Users\Administrator\Desktop//tempWed Jul 25 16:43:21 CST 2018.jpg
+2018-07-25 16:43:22 [ main:20 ] - [ INFO ] 切割图片出现错误：C:\Users\Administrator\Desktop//tempWed Jul 25 16:43:21 CST 2018.jpg
+2018-07-25 16:43:22 [ main:20 ] - [ INFO ] 流关闭 IOException：C:\Users\Administrator\Desktop//tempWed Jul 25 16:43:21 CST 2018.jpg
+2018-07-25 16:43:22 [ main:20 ] - [ INFO ] 切割图片出现错误：C:\Users\Administrator\Desktop//tempWed Jul 25 16:43:21 CST 2018.jpg
+2018-07-25 16:43:22 [ main:20 ] - [ INFO ] 流关闭 IOException：C:\Users\Administrator\Desktop//tempWed Jul 25 16:43:21 CST 2018.jpg
+2018-07-25 16:43:22 [ main:20 ] - [ INFO ] 切割图片出现错误：C:\Users\Administrator\Desktop//tempWed Jul 25 16:43:21 CST 2018.jpg
+2018-07-25 16:47:05 [ main:0 ] - [ DEBUG ] -------------- l o g 记 录---2018-07-25 16:47:05----------------------------------------
+2018-07-25 16:47:05 [ main:0 ] - [ INFO ] 流关闭 IOException：C:\Users\Administrator\Desktop//tempWed Jul 25 16:46:31 CST 2018.jpg
+2018-07-25 16:47:05 [ main:10 ] - [ INFO ] 流关闭 IOException：C:\Users\Administrator\Desktop//tempWed Jul 25 16:46:31 CST 2018.jpg
+2018-07-25 16:47:49 [ main:44681 ] - [ INFO ] 流关闭 IOException：C:\Users\Administrator\Desktop//tempWed Jul 25 16:46:31 CST 2018.jpg
+2018-07-25 16:47:49 [ main:44682 ] - [ INFO ] 切割图片出现错误：C:\Users\Administrator\Desktop//tempWed Jul 25 16:46:31 CST 2018.jpg
+2018-07-25 16:47:49 [ main:44683 ] - [ INFO ] 流关闭 IOException：C:\Users\Administrator\Desktop//tempWed Jul 25 16:46:31 CST 2018.jpg
+2018-07-25 16:47:49 [ main:44683 ] - [ INFO ] 切割图片出现错误：C:\Users\Administrator\Desktop//tempWed Jul 25 16:46:31 CST 2018.jpg
+2018-07-25 16:47:49 [ main:44683 ] - [ INFO ] 流关闭 IOException：C:\Users\Administrator\Desktop//tempWed Jul 25 16:46:31 CST 2018.jpg
+2018-07-25 16:47:49 [ main:44684 ] - [ INFO ] 切割图片出现错误：C:\Users\Administrator\Desktop//tempWed Jul 25 16:46:31 CST 2018.jpg
+2018-07-25 16:48:02 [ main:0 ] - [ DEBUG ] -------------- l o g 记 录---2018-07-25 16:48:02----------------------------------------
+2018-07-25 16:48:02 [ main:0 ] - [ INFO ] 流关闭 IOException：C:\Users\Administrator\Desktop\tempWed Jul 25 16:48:02 CST 2018.jpg
+2018-07-25 16:48:02 [ main:0 ] - [ INFO ] 流关闭 IOException：C:\Users\Administrator\Desktop\tempWed Jul 25 16:48:02 CST 2018.jpg
+2018-07-25 16:48:02 [ main:50 ] - [ INFO ] 流关闭 IOException：C:\Users\Administrator\Desktop\tempWed Jul 25 16:48:02 CST 2018.jpg
+2018-07-25 16:48:02 [ main:50 ] - [ INFO ] 切割图片出现错误：C:\Users\Administrator\Desktop\tempWed Jul 25 16:48:02 CST 2018.jpg
+2018-07-25 16:48:02 [ main:50 ] - [ INFO ] 流关闭 IOException：C:\Users\Administrator\Desktop\tempWed Jul 25 16:48:02 CST 2018.jpg
+2018-07-25 16:48:02 [ main:50 ] - [ INFO ] 切割图片出现错误：C:\Users\Administrator\Desktop\tempWed Jul 25 16:48:02 CST 2018.jpg
+2018-07-25 16:48:02 [ main:50 ] - [ INFO ] 流关闭 IOException：C:\Users\Administrator\Desktop\tempWed Jul 25 16:48:02 CST 2018.jpg
+2018-07-25 16:48:02 [ main:50 ] - [ INFO ] 切割图片出现错误：C:\Users\Administrator\Desktop\tempWed Jul 25 16:48:02 CST 2018.jpg
+2018-07-25 16:51:20 [ main:0 ] - [ DEBUG ] -------------- l o g 记 录---2018-07-25 16:51:20----------------------------------------
+2018-07-25 16:51:20 [ main:0 ] - [ INFO ] 读取图片 io 异常:C:\Users\Administrator\Desktop\tempWed Jul 25 16:51:20 CST 2018.jpg
+2018-07-25 16:51:20 [ main:0 ] - [ INFO ] 图片 不是有效的:C:\Users\Administrator\Desktop\tempWed Jul 25 16:51:20 CST 2018.jpg
+2018-07-25 17:12:46 [ main:0 ] - [ DEBUG ] -------------- l o g 记 录---2018-07-25 17:12:46----------------------------------------
+2018-07-25 17:12:46 [ main:0 ] - [ INFO ] 图片不具备切割条件：C:\Users\Administrator\Desktop\temp_eb5461e272884247a40b172c230efa03.jpg
+2018-07-25 17:18:51 [ main:0 ] - [ DEBUG ] -------------- l o g 记 录---2018-07-25 17:18:51----------------------------------------
+2018-07-25 17:18:51 [ main:0 ] - [ INFO ] 图片不具备切割条件：C:\Users\Administrator\Desktop\temp_6253292864b5439890001a6af9f3775c.jpg
+2018-07-25 17:33:18 [ main:0 ] - [ DEBUG ] -------------- l o g 记 录---2018-07-25 17:33:18----------------------------------------
+2018-07-25 17:33:18 [ main:0 ] - [ INFO ] 图片不具备切割条件：C:\Users\Administrator\Desktop\temp_b786bb18ba7a4ba7afdf4d30733ef23f.jpg

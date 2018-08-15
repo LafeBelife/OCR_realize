@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="aip-core-1.3.8">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/aip-core-1.3.8.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

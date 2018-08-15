@@ -1,0 +1,16 @@
+2018-07-31 09:27:31 [ main:0 ] - [ INFO ] get access_token success. current state: STATE_AIP_AUTH_OK
+2018-07-31 09:27:31 [ main:9 ] - [ DEBUG ] current state after check priviledge: STATE_TRUE_AIP_USER
+2018-07-31 09:28:49 [ main:0 ] - [ INFO ] get access_token success. current state: STATE_AIP_AUTH_OK
+2018-07-31 09:28:49 [ main:6 ] - [ DEBUG ] current state after check priviledge: STATE_TRUE_AIP_USER
+2018-07-31 09:30:41 [ main:0 ] - [ INFO ] get access_token success. current state: STATE_AIP_AUTH_OK
+2018-07-31 09:30:41 [ main:1 ] - [ DEBUG ] current state after check priviledge: STATE_TRUE_AIP_USER
+2018-07-31 09:38:43 [ main:0 ] - [ INFO ] get access_token success. current state: STATE_AIP_AUTH_OK
+2018-07-31 09:38:43 [ main:2 ] - [ DEBUG ] current state after check priviledge: STATE_TRUE_AIP_USER
+2018-07-31 13:54:47 [ main:0 ] - [ INFO ] get access_token success. current state: STATE_AIP_AUTH_OK
+2018-07-31 13:54:47 [ main:15 ] - [ DEBUG ] current state after check priviledge: STATE_TRUE_AIP_USER
+2018-07-31 13:58:57 [ main:0 ] - [ INFO ] get access_token success. current state: STATE_AIP_AUTH_OK
+2018-07-31 13:58:57 [ main:2 ] - [ DEBUG ] current state after check priviledge: STATE_TRUE_AIP_USER
+2018-07-31 14:00:23 [ main:0 ] - [ INFO ] get access_token success. current state: STATE_AIP_AUTH_OK
+2018-07-31 14:00:23 [ main:2 ] - [ DEBUG ] current state after check priviledge: STATE_TRUE_AIP_USER
+2018-07-31 14:01:56 [ main:0 ] - [ INFO ] get access_token success. current state: STATE_AIP_AUTH_OK
+2018-07-31 14:01:56 [ main:9 ] - [ DEBUG ] current state after check priviledge: STATE_TRUE_AIP_USER

@@ -1,0 +1,23 @@
+2018-08-15 10:33:17 [ main:0 ] - [ DEBUG ] -------------- l o g 记 录---2018-08-15 10:33:17----------------------------------------
+2018-08-15 10:33:17 [ main:0 ] - [ INFO ] 获取 httpURLConnection 请求信息失败:Server returned HTTP response code: 401 for URL: https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=null&client_secret=null
+2018-08-15 10:33:17 [ main:0 ] - [ INFO ] 获取 json 秘钥 失败!
+2018-08-15 10:34:09 [ main:0 ] - [ DEBUG ] -------------- l o g 记 录---2018-08-15 10:34:09----------------------------------------
+2018-08-15 10:34:09 [ main:0 ] - [ INFO ] 获取 httpURLConnection 请求信息失败:Server returned HTTP response code: 401 for URL: https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=null&client_secret=null
+2018-08-15 10:34:09 [ main:0 ] - [ INFO ] 获取 json 秘钥 失败!
+2018-08-15 10:35:09 [ main:0 ] - [ DEBUG ] -------------- l o g 记 录---2018-08-15 10:35:09----------------------------------------
+2018-08-15 10:35:09 [ main:2 ] - [ INFO ] 获取 httpURLConnection 请求信息失败:Server returned HTTP response code: 401 for URL: https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=null&client_secret=null
+2018-08-15 10:35:09 [ main:3 ] - [ INFO ] 获取 json 秘钥 失败!
+2018-08-15 10:36:09 [ main:0 ] - [ DEBUG ] -------------- l o g 记 录---2018-08-15 10:36:09----------------------------------------
+2018-08-15 10:36:09 [ main:0 ] - [ INFO ] 获取 httpURLConnection 请求信息失败:Server returned HTTP response code: 401 for URL: https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=null&client_secret=null
+2018-08-15 10:36:09 [ main:10 ] - [ INFO ] 获取 json 秘钥 失败!
+2018-08-15 10:45:22 [ main:0 ] - [ DEBUG ] -------------- l o g 记 录---2018-08-15 10:45:22----------------------------------------
+2018-08-15 10:45:22 [ main:0 ] - [ INFO ] token初始化成功！
+2018-08-15 10:45:24 [ main:2085 ] - [ INFO ] 文件夹 不是有效的:C:\Users\Administrator\Desktop\temp_icon\3.jpg
+2018-08-15 10:52:14 [ main:0 ] - [ DEBUG ] -------------- l o g 记 录---2018-08-15 10:52:14----------------------------------------
+2018-08-15 10:52:14 [ main:0 ] - [ INFO ] token初始化成功！
+AiToken{apiKey='l9zfG30iGLM3OqhPjWIZEAFr', secretKey='jl3l3mjWGYsFHfSrzmVYGGuWtpwC3iRA', appId='11588901', rank=0, freeSecretKey='null'}
+2018-08-15 11:36:54 [ main:0 ] - [ DEBUG ] -------------- l o g 记 录 --- 2018-08-15 11:36:54 ----------------------------------------
+2018-08-15 11:36:54 [ main:2 ] - [ INFO ] token初始化成功！
+AiToken{apiKey='l9zfG30iGLM3OqhPjWIZEAFr', secretKey='jl3l3mjWGYsFHfSrzmVYGGuWtpwC3iRA', appId='11588901', rank=0, freeSecretKey='null'}
+2018-08-15 11:36:55 [ main:1485 ] - [ INFO ] 图片 不是有效的:C:\Users\Administrator\Desktop\tep_icon\3.jpg
+2018-08-15 11:36:55 [ main:1485 ] - [ INFO ] 非有效图片:C:\Users\Administrator\Desktop\tep_icon\3.jpg
